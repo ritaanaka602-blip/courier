@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParcelExpress Cargo & Logistics | Fast Domestic & Global Shipping</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandOrange: '#FF4500',
+                        brandDarkOrange: '#CC3700',
+                        brandLightOrange: '#FFF3EE',
+                        brandDark: '#0B0B0B',
+                        brandCard: '#151515',
+                        brandGray: '#1F1F1F'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0B0B0B; color: #E5E5E5; }
+        .glass-card { background: rgba(21, 21, 21, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 69, 0, 0.15); }
+        .glow-orange { box-shadow: 0 0 25px rgba(255, 69, 0, 0.35); }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0B0B; }
+        ::-webkit-scrollbar-thumb { background: #FF4500; border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brandOrange selection:text-white">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-50 bg-[#0B0B0B] flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="relative w-20 h-20 mb-4">
+            <div class="absolute inset-0 border-4 border-brandOrange/20 rounded-full"></div>
+            <div class="absolute inset-0 border-4 border-brandOrange rounded-full border-t-transparent animate-spin"></div>
+            <div class="absolute inset-0 flex items-center justify-center text-brandOrange text-2xl font-black">
+                <i class="fa-solid fa-box-open"></i>
+            </div>
+        </div>
+        <h2 class="text-xl font-black tracking-wider text-white">Parcel<span class="text-brandOrange">Express</span></h2>
+        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest">Loading Logistics Network...</p>
+    </div>
+
+    <!-- Top Contact Bar -->
+    <div class="bg-[#121212] border-b border-gray-800 text-gray-400 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span><i class="fa-solid fa-phone text-brandOrange mr-1.5"></i> +234 800 PARCEL EXP</span>
+                <span><i class="fa-solid fa-envelope text-brandOrange mr-1.5"></i> support@parcelexpress.com</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="bg-brandOrange/20 text-brandOrange px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-brandOrange/30">RC 1849202</span>
+                <span><i class="fa-solid fa-clock text-brandOrange mr-1.5"></i> Mon - Sat: 8:00 AM - 7:00 PM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="sticky top-0 z-40 bg-[#0B0B0B]/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brandOrange to-brandDarkOrange flex items-center justify-center text-white shadow-lg shadow-brandOrange/40 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-cube text-2xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-black tracking-tight text-white">Parcel<span class="text-brandOrange">Express</span></span>
+                    <span class="block text-[10px] uppercase font-bold tracking-widest text-gray-400">Cargo & Logistics</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-300">
+                <a href="#home" class="hover:text-brandOrange transition-colors">Home</a>
+                <a href="#services" class="hover:text-brandOrange transition-colors">Services & Goods</a>
+                <a href="#delivery-means" class="hover:text-brandOrange transition-colors">Fleet & Delivery</a>
+                <a href="#calculator" class="hover:text-brandOrange transition-colors">Rate Calculator</a>
+                <a href="#tracking" class="hover:text-brandOrange transition-colors">Track Shipment</a>
+                <a href="#faqs" class="hover:text-brandOrange transition-colors">FAQs</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#calculator" class="bg-brandGray text-gray-200 border border-gray-700 px-4 py-2.5 rounded-xl text-sm font-semibold hover:border-brandOrange transition-all">
+                    <i class="fa-solid fa-calculator mr-2 text-brandOrange"></i>Get Quote
+                </a>
+                <button onclick="openBookingModal()" class="bg-brandOrange text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-brandOrange/40 hover:bg-brandDarkOrange transition-all">
+                    Book Shipment
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-gray-300 text-2xl p-2 focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#121212] border-b border-gray-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#home" class="block py-2 text-gray-300 font-medium hover:text-brandOrange">Home</a>
+            <a href="#services" class="block py-2 text-gray-300 font-medium hover:text-brandOrange">Services & Goods</a>
+            <a href="#delivery-means" class="block py-2 text-gray-300 font-medium hover:text-brandOrange">Fleet & Delivery</a>
+            <a href="#calculator" class="block py-2 text-gray-300 font-medium hover:text-brandOrange">Rate Calculator</a>
+            <a href="#tracking" class="block py-2 text-gray-300 font-medium hover:text-brandOrange">Track Shipment</a>
+            <a href="#faqs" class="block py-2 text-gray-300 font-medium hover:text-brandOrange">FAQs</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full text-center bg-brandOrange text-white py-3 rounded-xl font-semibold shadow-md">Book Shipment Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden bg-[#0B0B0B] py-20 lg:py-32 border-b border-gray-800">
+        <!-- Background Grid Effect -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FF4500_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-brandOrange/10 border border-brandOrange/30 px-3.5 py-1.5 rounded-full text-xs font-semibold text-brandOrange">
+                        <span class="w-2 h-2 rounded-full bg-brandOrange animate-ping"></span>
+                        Global Air & Sea Cargo + Nationwide Nigerian Courier
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white">
+                        Lightning Fast Deliveries <span class="text-brandOrange underline decoration-white/20">Nationwide & Worldwide</span>.
+                    </h1>
+                    <p class="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+                        Specializing in secure air/sea cargo from Nigeria to the UK, USA, UAE & China, alongside rapid intra-state dispatch bikes and inter-state delivery vans. We ship your foodstuffs, electronics, and commercial cargo safely.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="openBookingModal()" class="bg-brandOrange hover:bg-brandDarkOrange text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-brandOrange/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-3">
+                            <i class="fa-solid fa-box-open"></i> Book Pickup Now
+                        </button>
+                        <a href="#tracking" class="bg-brandGray hover:bg-gray-800 border border-gray-700 text-white font-semibold px-8 py-4 rounded-xl backdrop-blur-sm transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-magnifying-glass"></i> Track Package
+                        </a>
+                    </div>
+                    <!-- Trust Badges -->
+                    <div class="pt-8 border-t border-gray-800 grid grid-cols-3 gap-4 text-gray-300">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-white">100k+</p>
+                            <p class="text-xs text-gray-400">Successful Shipments</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-white">36 States</p>
+                            <p class="text-xs text-gray-400">Nigeria Coverage</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-white">20+ Hubs</p>
+                            <p class="text-xs text-gray-400">Global Destinations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Tracking Widget in Hero -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-2xl glow-orange">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Quick Tracking</h3>
+                                <p class="text-xs text-gray-400">Enter your Waybill or Tracking Number</p>
+                            </div>
+                            <div class="w-12 h-12 bg-brandOrange/20 rounded-2xl flex items-center justify-center text-brandOrange border border-brandOrange/30">
+                                <i class="fa-solid fa-barcode text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Waybill Number</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
+                                        <i class="fa-solid fa-hashtag"></i>
+                                    </span>
+                                    <input type="text" id="heroTrackingInput" placeholder="e.g. PX-9482-NG" class="w-full pl-11 pr-4 py-3.5 bg-brandGray border border-gray-700 rounded-xl focus:outline-none focus:border-brandOrange text-sm font-semibold uppercase text-white">
+                                </div>
+                            </div>
+                            <button onclick="handleQuickTrack()" class="w-full bg-brandOrange hover:bg-brandDarkOrange text-white font-bold py-3.5 rounded-xl shadow-lg shadow-brandOrange/30 transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-search"></i> Track Shipment
+                            </button>
+                        </div>
+                        <div id="quickTrackResult" class="mt-4 hidden p-4 bg-brandGray rounded-xl border border-gray-700 text-sm text-gray-300">
+                            <!-- Dynamic Tracking Result -->
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span>Need instant assistance?</span>
+                            <a href="https://wa.me/2348000000000" target="_blank" class="text-brandOrange font-semibold hover:underline flex items-center gap-1">
+                                <i class="fa-brands fa-whatsapp text-base"></i> Chat on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Goods Offered Section -->
+    <section id="services" class="py-24 bg-[#0B0B0B]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-brandOrange bg-brandOrange/10 px-3.5 py-1.5 rounded-full border border-brandOrange/20">Our Services & Goods</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">Comprehensive Courier & Cargo Solutions</h2>
+                <p class="text-gray-400 text-base">From delicate African foodstuffs packaging to heavy industrial machinery and commercial fashion batches, we deliver with precision.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card rounded-3xl overflow-hidden hover:border-brandOrange/50 transition-all group flex flex-col justify-between">
+                    <div class="h-56 relative overflow-hidden bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Air Cargo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-brandOrange text-white text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider">Air Freight</span>
+                    </div>
+                    <div class="p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">International Air Cargo</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Express door-to-door or airport-to-airport shipping from Nigeria to UK, USA, UAE, and China with full customs clearance support.</p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> 3 - 5 Working Days Delivery</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Customs Duty Clearance Included</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card rounded-3xl overflow-hidden hover:border-brandOrange/50 transition-all group flex flex-col justify-between">
+                    <div class="h-56 relative overflow-hidden bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80" alt="Sea Freight" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-brandOrange text-white text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider">Ocean Freight</span>
+                    </div>
+                    <div class="p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Ocean & Sea Cargo</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Cost-effective bulk volume shipping for heavy industrial machinery, automobile spare parts, and large commercial container loads.</p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Full & Less Container Load (FCL/LCL)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Heavy Machinery Handlers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card rounded-3xl overflow-hidden hover:border-brandOrange/50 transition-all group flex flex-col justify-between">
+                    <div class="h-56 relative overflow-hidden bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="African Foodstuffs" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-brandOrange text-white text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider">Foodstuffs Export</span>
+                    </div>
+                    <div class="p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Nigerian Foodstuffs & Spices</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Professional vacuum-sealing and export packaging for garri, yam flour, dried fish, ogbono, palm oil, and local spices.</p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Pest-Free Vacuum Sealing</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Certified for US, UK & Europe</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-card rounded-3xl overflow-hidden hover:border-brandOrange/50 transition-all group flex flex-col justify-between">
+                    <div class="h-56 relative overflow-hidden bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=600&q=80" alt="Domestic Courier" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-brandOrange text-white text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider">Domestic Express</span>
+                    </div>
+                    <div class="p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Nationwide Inter-State Courier</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Same-day intra-city delivery via dispatch bikes and next-day inter-state cargo delivery across all 36 Nigerian states.</p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Real-time GPS Tracking</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Secure Doorstep Drop-off</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="glass-card rounded-3xl overflow-hidden hover:border-brandOrange/50 transition-all group flex flex-col justify-between">
+                    <div class="h-56 relative overflow-hidden bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" alt="Fashion and Merchandise" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-brandOrange text-white text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider">Fashion & Retail</span>
+                    </div>
+                    <div class="p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Commercial Fashion & Goods</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Bulk transport for Ankara fabrics, designer clothing, handbags, shoes, cosmetics, and electronics for boutique owners and e-commerce vendors.</p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Bulk Discount Rates</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Fragile & Secure Packaging</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="glass-card rounded-3xl overflow-hidden hover:border-brandOrange/50 transition-all group flex flex-col justify-between">
+                    <div class="h-56 relative overflow-hidden bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Industrial Spares" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-brandOrange text-white text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider">Industrial Spares</span>
+                    </div>
+                    <div class="p-8 space-y-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Industrial Equipment & Spares</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Specialized logistics for generators, solar inverters, automotive engine parts, and heavy factory hardware with full transit insurance.</p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Full Transit Insurance</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brandOrange"></i> Heavy Lift Capabilities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Means & Fleet Showcase -->
+    <section id="delivery-means" class="py-24 bg-[#121212] border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-brandOrange bg-brandOrange/10 px-3.5 py-1.5 rounded-full border border-brandOrange/20">Our Transport Fleet</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">How We Transport Your Cargo</h2>
+                <p class="text-gray-400 text-base">State-of-the-art multi-modal delivery options engineered for speed, safety, and reliability across land, air, and sea.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Fleet 1 -->
+                <div class="glass-card p-6 rounded-3xl space-y-4 hover:border-brandOrange/50 transition-all">
+                    <div class="h-44 rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=500&q=80" alt="Express Bikes" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brandOrange text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Intra-City</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="w-10 h-10 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-motorcycle"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Express Dispatch Bikes</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Perfect for documents, small parcels, food deliveries, and urgent letters within Lagos, Abuja, and Port Harcourt same-day.</p>
+                    </div>
+                </div>
+
+                <!-- Fleet 2 -->
+                <div class="glass-card p-6 rounded-3xl space-y-4 hover:border-brandOrange/50 transition-all">
+                    <div class="h-44 rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=500&q=80" alt="Delivery Vans" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brandOrange text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Inter-State</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="w-10 h-10 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Cargo Vans & Trucks</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Medium and heavy-duty trucks facilitating secure inter-state cargo movement across all 36 Nigerian states daily.</p>
+                    </div>
+                </div>
+
+                <!-- Fleet 3 -->
+                <div class="glass-card p-6 rounded-3xl space-y-4 hover:border-brandOrange/50 transition-all">
+                    <div class="h-44 rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=500&q=80" alt="Cargo Airplanes" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brandOrange text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Global Air</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="w-10 h-10 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-plane-up"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Global Cargo Airplanes</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Scheduled international flights connecting Murtala Muhammed Airport (LOS) directly to Heathrow, JFK, Dubai, and Guangzhou.</p>
+                    </div>
+                </div>
+
+                <!-- Fleet 4 -->
+                <div class="glass-card p-6 rounded-3xl space-y-4 hover:border-brandOrange/50 transition-all">
+                    <div class="h-44 rounded-2xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=500&q=80" alt="Cargo Ships" class="w-full h-full object-cover">
+                        <span class="absolute bottom-3 left-3 bg-brandOrange text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Sea Freight</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="w-10 h-10 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-ship"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Ocean Cargo Vessels</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Massive container vessels handling bulk commercial merchandise, industrial machinery, and heavy equipment imports affordably.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator & Booking Section -->
+    <section id="calculator" class="py-24 bg-[#0B0B0B]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Calculator Box -->
+                <div class="lg:col-span-6 glass-card p-8 sm:p-10 rounded-3xl shadow-xl">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center text-xl border border-brandOrange/30">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-black text-white">Instant Rate Calculator</h3>
+                            <p class="text-xs text-gray-400">Calculate estimated shipping cost in Nigerian Naira (₦)</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-400 mb-1.5">Shipping Type</label>
+                                <select id="shippingType" class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm font-semibold text-white focus:outline-none focus:border-brandOrange">
+                                    <option value="local">Domestic (Nigeria Inter-State / Intra-City)</option>
+                                    <option value="intl" selected>International Export (Nigeria to Global)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-400 mb-1.5">Destination</label>
+                                <select id="destination" class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm font-semibold text-white focus:outline-none focus:border-brandOrange">
+                                    <optgroup label="International Hubs">
+                                        <option value="uk">United Kingdom (London)</option>
+                                        <option value="usa">United States (New York)</option>
+                                        <option value="uae">United Arab Emirates (Dubai)</option>
+                                        <option value="china">China (Guangzhou / Yiwu)</option>
+                                    </optgroup>
+                                    <optgroup label="Domestic Hubs">
+                                        <option value="lagos">Lagos State</option>
+                                        <option value="abuja">Abuja (FCT)</option>
+                                        <option value="ph">Port Harcourt (Rivers)</option>
+                                        <option value="kano">Kano State</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-400 mb-1.5">Cargo Category</label>
+                                <select id="itemCategory" class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm font-semibold text-white focus:outline-none focus:border-brandOrange">
+                                    <option value="food">Foodstuffs & Dry Goods</option>
+                                    <option value="clothing">Clothing & Fashion</option>
+                                    <option value="electronics">Electronics & Gadgets</option>
+                                    <option value="industrial">Industrial Spares</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-gray-400 mb-1.5">Weight (KG)</label>
+                                <input type="number" id="cargoWeight" min="1" max="2000" value="5" class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm font-semibold text-white focus:outline-none focus:border-brandOrange">
+                            </div>
+                        </div>
+
+                        <button onclick="calculateRate()" class="w-full bg-brandOrange hover:bg-brandDarkOrange text-white font-bold py-4 rounded-xl shadow-lg shadow-brandOrange/30 transition-all flex items-center justify-center gap-2 text-base">
+                            <i class="fa-solid fa-calculator"></i> Calculate Estimate
+                        </button>
+
+                        <div id="calcResult" class="hidden mt-6 p-6 bg-brandGray border border-gray-700 rounded-2xl space-y-3">
+                            <div class="flex justify-between items-center text-sm font-bold text-white border-b border-gray-800 pb-3">
+                                <span>Estimated Cost:</span>
+                                <span id="estPrice" class="text-xl text-brandOrange font-black">₦0.00</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs text-gray-400">
+                                <span>Estimated Transit Time:</span>
+                                <span id="estTime" class="font-bold text-gray-200">3 - 5 Working Days</span>
+                            </div>
+                            <div class="text-[11px] text-gray-500 italic pt-1">
+                                *Note: Subject to physical re-weighing at our sorting terminal.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action Card -->
+                <div class="lg:col-span-6 glass-card p-8 sm:p-10 rounded-3xl shadow-xl flex flex-col justify-between h-full border border-brandOrange/30">
+                    <div class="space-y-6">
+                        <div class="w-14 h-14 bg-brandOrange text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-brandOrange/40">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-white">Ready to Send a Package?</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Experience hassle-free logistics with door-to-door pickup across Nigeria and worldwide global express delivery. Use our secure booking wizard to schedule your pickup in less than 2 minutes.
+                        </p>
+                        <div class="space-y-3 pt-2">
+                            <div class="flex items-center gap-3 text-sm text-gray-300">
+                                <i class="fa-solid fa-check-circle text-brandOrange text-lg"></i> Free door-to-door pickup in major cities
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-gray-300">
+                                <i class="fa-solid fa-check-circle text-brandOrange text-lg"></i> Paystack, Flutterwave & Bank Transfer supported
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-gray-300">
+                                <i class="fa-solid fa-check-circle text-brandOrange text-lg"></i> Real-time tracking & SMS alerts
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-8 mt-8 border-t border-gray-800">
+                        <button onclick="openBookingModal()" class="w-full bg-brandOrange hover:bg-brandDarkOrange text-white font-bold py-4 rounded-xl shadow-xl shadow-brandOrange/40 transition-all flex items-center justify-center gap-2 text-base">
+                            <i class="fa-solid fa-arrow-right"></i> Open Booking Wizard
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Tracking System -->
+    <section id="tracking" class="py-24 bg-[#121212] border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 space-y-3">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-brandOrange bg-brandOrange/10 px-3.5 py-1.5 rounded-full border border-brandOrange/20">Live Tracking Center</span>
+                <h2 class="text-3xl font-black text-white">Track Your Shipment Status</h2>
+                <p class="text-gray-400 text-sm">Monitor your cargo's journey from dispatch center to final destination in real-time.</p>
+            </div>
+
+            <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-xl space-y-8">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-1">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="detailedTrackingInput" placeholder="Enter Waybill (Try: PX-9482-NG)" class="w-full pl-11 pr-4 py-4 bg-brandGray border border-gray-700 rounded-2xl focus:outline-none focus:border-brandOrange text-sm font-bold uppercase text-white">
+                    </div>
+                    <button onclick="performDetailedTrack()" class="bg-brandOrange hover:bg-brandDarkOrange text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-brandOrange/30 transition-all flex items-center justify-center gap-2">
+                        Track Now
+                    </button>
+                </div>
+
+                <!-- Tracking Status Container -->
+                <div id="detailedTrackingResult" class="hidden space-y-6 pt-6 border-t border-gray-800">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-brandGray p-5 rounded-2xl gap-4 border border-gray-700">
+                        <div>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Waybill Number</span>
+                            <h4 id="resWaybill" class="text-lg font-black text-white">PX-9482-NG</h4>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Destination</span>
+                            <h4 id="resDest" class="text-lg font-black text-brandOrange">London, United Kingdom</h4>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Current Status</span>
+                            <span id="resStatusBadge" class="inline-block mt-1 px-3 py-1 bg-brandOrange/20 text-brandOrange text-xs font-bold rounded-full border border-brandOrange/30">In Transit</span>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Progress -->
+                    <div class="space-y-6 pl-4 sm:pl-8 border-l-2 border-brandOrange relative my-6">
+                        <div class="relative">
+                            <span class="absolute -left-[21px] top-1 w-4 h-4 rounded-full bg-brandOrange ring-4 ring-[#151515]"></span>
+                            <p class="text-xs text-gray-400 font-semibold">Today - 08:30 AM</p>
+                            <h5 class="text-sm font-bold text-white">Package Picked Up at Sender Address</h5>
+                            <p class="text-xs text-gray-400">Lagos Main Sorting Hub, Ikeja</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[21px] top-1 w-4 h-4 rounded-full bg-brandOrange ring-4 ring-[#151515]"></span>
+                            <p class="text-xs text-gray-400 font-semibold">Today - 01:15 PM</p>
+                            <h5 class="text-sm font-bold text-white">Customs Clearance & Documentation Complete</h5>
+                            <p class="text-xs text-gray-400">Murtala Muhammed International Airport (LOS)</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[21px] top-1 w-4 h-4 rounded-full bg-brandOrange ring-4 ring-[#151515] animate-ping"></span>
+                            <p class="text-xs text-brandOrange font-bold">In Progress (Live)</p>
+                            <h5 class="text-sm font-bold text-white">Departed Origin Hub via Cargo Flight</h5>
+                            <p class="text-xs text-gray-400">En route to Heathrow Airport (LHR)</p>
+                        </div>
+                        <div class="relative opacity-50">
+                            <span class="absolute -left-[21px] top-1 w-4 h-4 rounded-full bg-gray-700 ring-4 ring-[#151515]"></span>
+                            <p class="text-xs text-gray-400 font-semibold">Estimated Arrival</p>
+                            <h5 class="text-sm font-bold text-white">Out for Final Doorstep Delivery</h5>
+                            <p class="text-xs text-gray-400">Recipient Address in London, UK</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="trackingPlaceholder" class="text-center py-8 text-gray-500 text-sm italic">
+                    Enter a waybill number above to inspect checkpoints. (Try sample code: <span class="font-bold text-brandOrange underline cursor-pointer" onclick="document.getElementById('detailedTrackingInput').value='PX-9482-NG'; performDetailedTrack();">PX-9482-NG</span>)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="py-24 bg-[#0B0B0B]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-brandOrange bg-brandOrange/10 px-3.5 py-1.5 rounded-full border border-brandOrange/20">Got Questions?</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">Frequently Asked Questions</h2>
+                <p class="text-gray-400 text-sm">Everything you need to know about shipping with ParcelExpress Cargo & Logistics.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center gap-4 focus:outline-none">
+                        <span>How long does international air cargo take from Nigeria to the UK, USA, or Dubai?</span>
+                        <i class="fa-solid fa-chevron-down text-brandOrange transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-sm text-gray-400 leading-relaxed border-t border-gray-800 pt-3">
+                        Our standard international air freight shipping from Nigeria to major UK, USA, and Dubai hubs takes between 3 to 5 working days. Sea freight options are also available for heavy commercial goods and take approximately 4 to 6 weeks.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center gap-4 focus:outline-none">
+                        <span>Can I send Nigerian foodstuffs like Garri, Yam flour, and Dried Fish abroad?</span>
+                        <i class="fa-solid fa-chevron-down text-brandOrange transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-sm text-gray-400 leading-relaxed border-t border-gray-800 pt-3">
+                        Yes, absolutely! We specialize in packing and shipping African foodstuffs. We provide professional vacuum-sealing and pest-free packaging to ensure your foodstuffs clear customs in the UK, USA, Canada, and Europe smoothly.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center gap-4 focus:outline-none">
+                        <span>Do you offer door-to-door delivery across all 36 states in Nigeria?</span>
+                        <i class="fa-solid fa-chevron-down text-brandOrange transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-sm text-gray-400 leading-relaxed border-t border-gray-800 pt-3">
+                        Yes, we cover all 36 states in Nigeria. Whether your package is going from Lagos to Abuja, Port Harcourt to Kano, or remote towns, our domestic logistics network ensures safe door-to-door delivery.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden transition-all">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center gap-4 focus:outline-none">
+                        <span>What payment methods are supported for booking shipments?</span>
+                        <i class="fa-solid fa-chevron-down text-brandOrange transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-sm text-gray-400 leading-relaxed border-t border-gray-800 pt-3">
+                        We support multiple secure payment gateways including Paystack (Card, USSD, Bank Transfer), Flutterwave, Direct Bank Transfer (Zenith, GTBank, Access), and Cash on Pickup at our sorting hubs.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#070707] text-gray-400 pt-16 pb-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <!-- Col 1: About Brand -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brandOrange flex items-center justify-center text-white">
+                            <i class="fa-solid fa-cube text-xl"></i>
+                        </div>
+                        <span class="text-xl font-black text-white">Parcel<span class="text-brandOrange">Express</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        Nigeria's trusted leader in local courier, air freight, sea cargo, and international logistics services. Connecting you to the world with speed and security.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" class="w-10 h-10 bg-brandGray hover:bg-brandOrange text-white rounded-xl flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-brandGray hover:bg-brandOrange text-white rounded-xl flex items-center justify-center transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-brandGray hover:bg-brandOrange text-white rounded-xl flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-brandGray hover:bg-brandOrange text-white rounded-xl flex items-center justify-center transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-brandOrange transition-colors">Home</a></li>
+                        <li><a href="#services" class="hover:text-brandOrange transition-colors">Services & Goods</a></li>
+                        <li><a href="#delivery-means" class="hover:text-brandOrange transition-colors">Our Fleet</a></li>
+                        <li><a href="#calculator" class="hover:text-brandOrange transition-colors">Rate Calculator</a></li>
+                        <li><a href="#tracking" class="hover:text-brandOrange transition-colors">Track Shipment</a></li>
+                        <li><a href="#faqs" class="hover:text-brandOrange transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Nigerian Hubs -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Nigerian Hubs</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fa-solid fa-location-dot text-brandOrange mr-2"></i> Ikeja, Lagos (HQ)</li>
+                        <li><i class="fa-solid fa-location-dot text-brandOrange mr-2"></i> Wuse 2, Abuja</li>
+                        <li><i class="fa-solid fa-location-dot text-brandOrange mr-2"></i> GRA, Port Harcourt</li>
+                        <li><i class="fa-solid fa-location-dot text-brandOrange mr-2"></i> Sabon Gari, Kano</li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: International Hubs -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Global Hubs</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fa-solid fa-earth-americas text-brandOrange mr-2"></i> London, UK</li>
+                        <li><i class="fa-solid fa-earth-americas text-brandOrange mr-2"></i> New York, USA</li>
+                        <li><i class="fa-solid fa-earth-americas text-brandOrange mr-2"></i> Dubai, UAE</li>
+                        <li><i class="fa-solid fa-earth-americas text-brandOrange mr-2"></i> Guangzhou, China</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>&copy; 2026 ParcelExpress Cargo & Logistics Ltd. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-brandOrange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brandOrange transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-brandOrange transition-colors">Customs Guidelines</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal Wizard -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="glass-card max-w-2xl w-full p-6 sm:p-8 rounded-3xl shadow-2xl border border-brandOrange/40 relative my-8">
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-brandOrange text-white rounded-xl flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-white">Book Shipment Wizard</h3>
+                    <p class="text-xs text-gray-400">Fill in details & choose your payment method</p>
+                </div>
+            </div>
+
+            <form id="multiStepForm" onsubmit="submitBooking(event)" class="space-y-5">
+                <!-- Step 1: Sender & Receiver -->
+                <div class="space-y-4">
+                    <h4 class="text-sm font-bold text-brandOrange uppercase tracking-wider">1. Contact & Addresses</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Sender's Full Name</label>
+                            <input type="text" required placeholder="Chukwuma Okafor" class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-brandOrange">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Phone Number</label>
+                            <input type="tel" required placeholder="+234 803 000 0000" class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-brandOrange">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Pickup City / State</label>
+                            <select class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-brandOrange">
+                                <option>Lagos (Ikeja / Lekki Hub)</option>
+                                <option>Abuja (Garki / Wuse)</option>
+                                <option>Port Harcourt (GRA)</option>
+                                <option>Kano (Central)</option>
+                                <option>Other Nigerian State</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Destination Country / City</label>
+                            <input type="text" required placeholder="London, UK or Abuja, Nigeria" class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-brandOrange">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Package details -->
+                <div class="space-y-4 pt-2 border-t border-gray-800">
+                    <h4 class="text-sm font-bold text-brandOrange uppercase tracking-wider">2. Package Details</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Item Category</label>
+                            <select class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-brandOrange">
+                                <option>Foodstuffs & Dry Goods (Vacuum Sealed)</option>
+                                <option>Clothing & Fashion Items</option>
+                                <option>Electronics & Gadgets</option>
+                                <option>Industrial Spares</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Estimated Weight (KG)</label>
+                            <input type="number" min="1" value="5" required class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-brandOrange">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-gray-400 mb-1">Description of Items</label>
+                        <textarea rows="2" required placeholder="e.g. 2 bags of garri, egusi, dried fish and 3 pairs of native attire" class="w-full px-4 py-3 bg-brandGray border border-gray-700 rounded-xl text-sm text-white focus:outline-none focus:border-brandOrange"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 3: Payment Method -->
+                <div class="space-y-4 pt-2 border-t border-gray-800">
+                    <h4 class="text-sm font-bold text-brandOrange uppercase tracking-wider">3. Select Payment Method</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <label class="flex items-center gap-3 p-3.5 bg-brandGray border border-gray-700 rounded-xl cursor-pointer hover:border-brandOrange">
+                            <input type="radio" name="paymentMethod" checked class="text-brandOrange focus:ring-brandOrange">
+                            <div>
+                                <span class="block text-sm font-bold text-white">Paystack / Card / USSD</span>
+                                <span class="block text-[11px] text-gray-400">Instant secure online payment</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-brandGray border border-gray-700 rounded-xl cursor-pointer hover:border-brandOrange">
+                            <input type="radio" name="paymentMethod" class="text-brandOrange focus:ring-brandOrange">
+                            <div>
+                                <span class="block text-sm font-bold text-white">Flutterwave</span>
+                                <span class="block text-[11px] text-gray-400">Multi-currency & bank transfer</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-brandGray border border-gray-700 rounded-xl cursor-pointer hover:border-brandOrange">
+                            <input type="radio" name="paymentMethod" class="text-brandOrange focus:ring-brandOrange">
+                            <div>
+                                <span class="block text-sm font-bold text-white">Direct Bank Transfer</span>
+                                <span class="block text-[11px] text-gray-400">Zenith / GTBank / Access</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3.5 bg-brandGray border border-gray-700 rounded-xl cursor-pointer hover:border-brandOrange">
+                            <input type="radio" name="paymentMethod" class="text-brandOrange focus:ring-brandOrange">
+                            <div>
+                                <span class="block text-sm font-bold text-white">Cash on Pickup / Dropoff</span>
+                                <span class="block text-[11px] text-gray-400">Pay at our sorting hub</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-brandOrange hover:bg-brandDarkOrange text-white font-bold py-4 rounded-xl shadow-lg shadow-brandOrange/30 transition-all flex items-center justify-center gap-2 text-base mt-4">
+                    <i class="fa-solid fa-lock"></i> Complete Booking & Generate Waybill
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Preloader fade out
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 700);
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Modal Wizard Controls
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function submitBooking(e) {
+            e.preventDefault();
+            const waybill = 'PX-' + Math.floor(1000 + Math.random() * 9000) + '-NG';
+            alert('Booking confirmed successfully!\nYour Waybill Number is: ' + waybill + '\nOur dispatcher will contact you shortly for pickup.');
+            closeBookingModal();
+            e.target.reset();
+        }
+
+        // Rate Calculator Logic
+        function calculateRate() {
+            const shippingType = document.getElementById('shippingType').value;
+            const destination = document.getElementById('destination').value;
+            const category = document.getElementById('itemCategory').value;
+            const weight = parseFloat(document.getElementById('cargoWeight').value) || 1;
+
+            let baseRatePerKg = 6000; // NGN
+
+            if (shippingType === 'intl') {
+                if (destination === 'uk') baseRatePerKg = 13500;
+                else if (destination === 'usa') baseRatePerKg = 16000;
+                else if (destination === 'uae') baseRatePerKg = 12000;
+                else if (destination === 'china') baseRatePerKg = 15000;
+            } else {
+                baseRatePerKg = 3000;
+            }
+
+            let multiplier = 1.0;
+            if (category === 'food') multiplier = 1.1;
+            if (category === 'electronics') multiplier = 1.3;
+            if (category === 'industrial') multiplier = 1.35;
+
+            const total = weight * baseRatePerKg * multiplier;
+
+            const resultDiv = document.getElementById('calcResult');
+            const priceSpan = document.getElementById('estPrice');
+            const timeSpan = document.getElementById('estTime');
+
+            priceSpan.textContent = '₦ ' + total.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+            if (shippingType === 'intl') {
+                timeSpan.textContent = destination === 'china' ? '5 - 7 Working Days' : '3 - 5 Working Days';
+            } else {
+                timeSpan.textContent = '24 - 48 Hours';
+            }
+
+            resultDiv.classList.remove('hidden');
+        }
+
+        // Quick Tracking Hero
+        function handleQuickTrack() {
+            const code = document.getElementById('heroTrackingInput').value.trim();
+            const resultDiv = document.getElementById('quickTrackResult');
+            if(!code) {
+                alert('Please enter a valid waybill number.');
+                return;
+            }
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = `
+                <div class="space-y-1">
+                    <div class="flex justify-between font-bold text-white">
+                        <span>Waybill: ${code.toUpperCase()}</span>
+                        <span class="text-brandOrange">In Transit</span>
+                    </div>
+                    <p class="text-xs text-gray-400">Current Location: Sorting Terminal, Lagos Hub</p>
+                    <p class="text-[11px] text-gray-500">Estimated Delivery: In 3 Working Days</p>
+                </div>
+            `;
+        }
+
+        // Detailed Tracking Center
+        function performDetailedTrack() {
+            const code = document.getElementById('detailedTrackingInput').value.trim();
+            const resultContainer = document.getElementById('detailedTrackingResult');
+            const placeholder = document.getElementById('trackingPlaceholder');
+
+            if(!code) {
+                alert('Please enter a waybill number.');
+                return;
+            }
+
+            resultContainer.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+            document.getElementById('resWaybill').textContent = code.toUpperCase();
+        }
+    </script>
+</body>
+</html>
